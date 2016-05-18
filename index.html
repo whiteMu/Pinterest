@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="zhihuDaily">
+
+	<head ng-controller="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>知乎日报</title>
+		<script src="lib/ionic/js/ionic.bundle.js"></script>
+		<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+		<link href="css/news_qa.auto.css" rel="stylesheet" />
+		<link ng-href="{{indexStyle1}}" rel="stylesheet">
+		<link ng-href="{{styleStyle1}}" rel="stylesheet">
+		<link ng-href="{{personCenterStyle1}}" rel="stylesheet">
+	
+		<!--<script src="cordova.js"></script>-->
+		<script src="js/app.js"></script>
+		<script src="js/services/indexList.js"></script>
+		<script src="lib/ionic/js/angular/angular-ui-router.js"></script>
+	</head>
+
+	<body>
+
+		<!--========左侧侧边栏============-->
+
+		<ion-side-menus>
+			<!-- 中间内容 -->
+			<ion-side-menu-content>
+				<div class="side_menu_content_wrap">
+
+					<!--=======头部bar=======-->
+					<header class="header_header" ng-controller="setHeader">
+						<ion-header-bar align-title="left" class="bar-positive">
+
+							<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+
+							<h1 class="title">首页</h1>
+							<div class="buttons header_right">
+								<button class="button icon ion-chatbubbles"></button>
+								<button class="button icon ion-android-more-vertical" ng-click="set()"></button>
+								<ul class="setBlack" ng-hide="hideOrShow">
+									<li ng-click="styleChange()" ng-bind="whiteOrBlackContent"></li>
+									<li>设置选项</li>
+								</ul>
+							</div>
+
+						</ion-header-bar>
+					</header>
+
+					<!--========更改内容区=====-->
+					<div ui-view></div>
+
+				</div>
+			</ion-side-menu-content>
+
+			<!-- 左侧菜单 -->
+
+			<ion-side-menu side="left">
+				<!--========滚动条bar=====-->
+				<ion-view title="Home" hide-nav-bar="true" class="left_scoll">
+					<ion-scroll zooming="true" direction="y" style="width: 100%; height: 100%">
+
+						<aside ng-controller="header">
+							<div class="aside_main">
+								<header>
+									<div class="header_icon clearfix">
+										<a ui-sref="personCenter" ng-click = "toggleLeft()"><img src="img/ico.png" /><span>Ms白目</span></a>
+
+									</div>
+									<div class="header_loading">
+										<a><span class="icon ion-star"></span>我的收藏</a><a><span class = "icon ion-archive"></span>离线下载</a>
+									</div>
+								</header>
+								<a class="aside_home_botton" ui-sref="home" ng-click = "toggleLeft()"><span class="icon ion-android-home"></span>首页</a>
+								<ul>
+									<li ng-repeat="asideList in asideListArr">
+										<a class="clearfix"><span  ng-bind = "asideList"></span><span class="aside_add_icon icon {{ionPlus}}"></span></a>
+									</li>
+								</ul>
+							</div>
+						</aside>
+					</ion-scroll>
+				</ion-view>
+			</ion-side-menu>
+
+		</ion-side-menus>
+		<script src="js/rem.js"></script>
+	</body>
+
+</html>
